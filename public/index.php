@@ -651,7 +651,7 @@
                             "0px";
                         question.classList.remove(
                             "faq__question--active"
-                            );
+                        );
                     } else {
                         // Mở item này
                         item.classList.add(
@@ -661,7 +661,7 @@
                             "px";
                         question.classList.add(
                             "faq__question--active"
-                            );
+                        );
                     }
                 });
         });
