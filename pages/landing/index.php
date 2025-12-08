@@ -1,3 +1,9 @@
+<?php 
+    if(!defined("_NTK")) {
+        die("Truy cập không hợp lệ");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,31 +17,11 @@
         viên
     </title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png"
-        href="../assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml"
-        href="../assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="../assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
-
-    <!-- Embed Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com"
-        crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
-
-    <!-- Font awesome -->
+    <?php 
+        require_once("./includes/head.php");
+    ?>
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="../assets/css/index.css" />
-    <link rel="stylesheet" href="./assets/css/landing.css" />
+        href="<?php echo _HOST_URL_PAGES ?>/landing/landing.css" />
 </head>
 
 <body>
@@ -45,7 +31,7 @@
             <div class="header__inner">
                 <!-- Logo -->
                 <a href="#" class="logo">
-                    <img src="../assets/icons/logo.svg"
+                    <img src="<?php echo _HOST_URL_ASSETS ?>/icons/logo.svg"
                         alt="Study Share" />
                     <span>StudyShare</span>
                 </a>
@@ -78,9 +64,9 @@
 
                 <!-- Actions -->
                 <div class="actions">
-                    <a href="../app/pages/auth/register.php"
+                    <a href="?page=auth&action=register"
                         class="actions__link">Đăng ký</a>
-                    <a href="../app/pages/auth/login.php"
+                    <a href="?page=auth&action=login"
                         class="actions__btn btn">Đăng nhập</a>
                 </div>
             </div>
@@ -127,7 +113,8 @@
                     <!-- Hero Right -->
                     <div class="hero__right">
                         <img class="hero__img"
-                            src="../assets/images/hero.jpg" alt="" />
+                            src="<?php echo _HOST_URL_ASSETS ?>/images/hero.jpg"
+                            alt="" />
                     </div>
                 </div>
             </div>
@@ -578,10 +565,10 @@
                     </p>
                     <!-- Actions -->
                     <div class="actions">
-                        <a href="../app/pages/auth/register.php"
+                        <a href="?page=auth&action=register"
                             class="actions__btn btn cta__btn">Đăng
                             ký</a>
-                        <a href="../app/pages/auth/login.php"
+                        <a href="?page=auth&action=login"
                             class="actions__btn btn cta__btn">Đăng
                             nhập</a>
                     </div>
@@ -601,7 +588,7 @@
                 <div class="footer__list">
                     <!-- Column 1 -->
                     <a href="#" class="logo">
-                        <img src="../assets/icons/logo.svg"
+                        <img src="<?php echo _HOST_URL_ASSETS ?>/icons/logo.svg"
                             alt="Study Share" />
                         <span>StudyShare</span>
                     </a>
