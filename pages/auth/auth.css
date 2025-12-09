@@ -93,6 +93,26 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     height: 52px;
+    outline: none;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-right: 20px;
+}
+
+.password-wrapper .auth__input {
+    flex: 1;
+    border: none;
+}
+
+.password-wrapper i {
+    color: var(--color-text-secondary);
+    cursor: pointer;
 }
 
 .auth__required {
@@ -134,4 +154,24 @@ body {
 
 .auth__btn:hover {
     background: var(--color-primary-dark);
+}
+
+/* Login */
+.login__main {
+    margin-top: 40px;
+}
+
+.auth__forget {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.auth__forget a {
+    color: #6f49fd;
+}
+
+.auth__forget a:hover {
+    text-decoration: underline;
 }

@@ -69,17 +69,23 @@
                 <!-- Passowrd -->
                 <div class="auth__field">
                     <label for="password">Password *</label>
-                    <input type="password" id="password"
-                        class="auth__input"
-                        placeholder="Create a password">
+                    <div class="password-wrapper">
+                        <input type="password" id="password"
+                            class="auth__input"
+                            placeholder="Create a password">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
                 </div>
 
                 <!-- Confirm password -->
                 <div class="auth__field">
                     <label for="confirm">Confirm Password *</label>
-                    <input type="password" id="confirm"
-                        class="auth__input"
-                        placeholder="Confirm a password">
+                    <div class="password-wrapper">
+                        <input type="password" id="confirm"
+                            class="auth__input"
+                            placeholder="Confirm a password">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
                 </div>
 
                 <div class="auth__required">
@@ -96,6 +102,7 @@
             <button class="btn auth__btn">Create my account</button>
         </form>
     </div>
+    <script src="<?php echo _HOST_URL_PAGES ?>/auth/main.js"></script>
 </body>
 
 </html>
