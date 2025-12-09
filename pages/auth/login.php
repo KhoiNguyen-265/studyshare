@@ -32,7 +32,8 @@ if(!defined("_NTK")) {
             class="auth-deco" alt="">
 
         <!-- Register -->
-        <form action="" method="POST" class="auth-form">
+        <form action="" method="POST" class="auth-form"
+            enctype="multipart/form-data">
             <h2 class="auth__heading">Welcome Back!</h2>
             <p class="auth__desc">
                 Dont have an account? <a

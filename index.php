@@ -15,8 +15,6 @@
 
     require_once("./includes/function.php");
 
-    sendMail('9akhoint11@gmail.com', "Test mail", "Hello world");
-
     $page = _PAGE;
     $action = _ACTION;
 

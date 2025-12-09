@@ -35,7 +35,8 @@
             class="auth-deco" alt="">
 
         <!-- Register -->
-        <form action="" method="POST" class="auth-form">
+        <form action="" method="POST" class="auth-form"
+            enctype="multipart/form-data">
             <h2 class="auth__heading">Sign Up</h2>
             <p class="auth__desc">
                 Already have an account? <a
