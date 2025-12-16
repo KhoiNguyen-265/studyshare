@@ -112,7 +112,7 @@ if (isPost()) {
 
         $oldData = getSessionFlash('oldData');
         $errors = getSessionFlash('errors');
-        }
+}
 
 ?>
 

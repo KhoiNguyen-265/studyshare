@@ -140,3 +140,18 @@ function redirect($path, $pathFull = false) {
     header("Location: $url");
     exit();
 }
+
+// Check login 
+function isLogin() {
+    $checkLogin = false;
+    $tokenLogin = getSessionFlash('token_login');
+
+    $user = getOne("SELECT * from token_login WHERE token = '$tokenLogin'");
+
+    if (!empty($user)) {
+        $checkLogin = true;
+    } else {
+        removeSession('token_login');
+    }
+    return $checkLogin;
+}

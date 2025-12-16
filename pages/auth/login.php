@@ -51,8 +51,11 @@ if(isPost()) {
                         $errors['login']['system'] = "Login is failed";
                     }
 
+                    // Gán token lên session 
+                    setSessionFLash('token_login', $token);
+
                     // Điều hướng trang 
-                    redirect("?page=auth&action=register");
+                    redirect("?page=home");
                 }
                 else {
                     // Sai mật khẩu
