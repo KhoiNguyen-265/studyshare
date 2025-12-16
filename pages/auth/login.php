@@ -58,7 +58,7 @@ if(isPost()) {
                         }
 
                         // Gán token lên session 
-                        setSessionFLash('token_login', $token);
+                        setSession('token_login', $token);
 
                         // Điều hướng trang 
                         redirect("?page=home");

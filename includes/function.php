@@ -1,7 +1,7 @@
 <?php 
-    if(!defined("_NTK")) {
-        die("Truy cập không hợp lệ");
-    }
+if(!defined("_NTK")) {
+    die("Truy cập không hợp lệ");
+}
 
 // Send mail 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -144,7 +144,7 @@ function redirect($path, $pathFull = false) {
 // Check login 
 function isLogin() {
     $checkLogin = false;
-    $tokenLogin = getSessionFlash('token_login');
+    $tokenLogin = getSession('token_login');
 
     $user = getOne("SELECT * from token_login WHERE token = '$tokenLogin'");
 
