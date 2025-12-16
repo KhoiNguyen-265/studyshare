@@ -1,7 +1,80 @@
 <?php 
+
 if(!defined("_NTK")) {
     die("Truy cập không hợp lệ");
 }
+
+$errors = [];
+$oldData = [];
+$result = filterData(); 
+
+if(isPost()) {
+    // Validate email 
+    if (empty($result['email'])) {
+        $errors['email']['required'] = "Please enter your email.";
+    } else {
+        // Đúng định dạng email 
+        if (!validateEmail($result['email'])) {
+            $errors['email']['isEmail'] = "Please enter a valid email address.";
+        }
+    }
+
+    // Validate password 
+        if (empty($result['password'])) {
+        $errors['password']['required'] = "Please enter your password.";
+    } 
+
+    // Handle login 
+    if (empty($errors)) {
+        $email = $result['email'];
+        $password = $result['password'];
+
+        $user = getOne("SELECT id, fullname, email, password, status, role FROM users WHERE email = '$email' ");
+        
+        if (!empty($user)) {
+            // Check status 
+            if ($user['status'] === 'pending') {
+                $errors['login']['status'] = "Account not activated. Please check your email for the verification link.";
+            } elseif ($user['status'] === 'blocked') {
+                $errors['login']['status'] = "Your account has been blocked by the administrator.";
+            } else {
+                // Mật khẩu đúng
+                if (password_verify($password, $user['password'])) {
+                    // tạo token -> insert vào table token_login
+                    $token = bin2hex(random_bytes(32));
+                    $dataInsert = [
+                        'token' => $token,
+                        'user_id' => $user['id']
+                    ];
+                    $insertStatus = insert('token_login', $dataInsert);
+                    if(!$insertStatus) {
+                        $errors['login']['system'] = "Login is failed";
+                    }
+
+                    // Điều hướng trang 
+                    redirect("?page=auth&action=register");
+                }
+                else {
+                    // Sai mật khẩu
+                    $errors['login']['mismatch'] = "Incorrect email or password.";
+                }
+            }
+        } else {
+            // Không có email 
+            $errors['login']['mismatch'] = "Incorrect email or password.";
+        }
+    }
+
+    if (!empty($errors)) {
+        setSessionFLash('oldData', $result);
+        setSessionFLash('errors', $errors);
+        
+        $oldData = getSessionFlash('oldData');
+        $errors = getSessionFlash('errors');
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +104,7 @@ if(!defined("_NTK")) {
         <img src="<?php echo _HOST_URL_ASSETS ?>/icons/auth-decoration.png"
             class="auth-deco" alt="">
 
-        <!-- Register -->
+        <!-- Login -->
         <form action="" method="POST" class="auth-form"
             enctype="multipart/form-data">
             <h2 class="auth__heading">Welcome Back!</h2>
@@ -53,19 +126,28 @@ if(!defined("_NTK")) {
                 <!-- Email -->
                 <div class="auth__field">
                     <label for="email">Email *</label>
-                    <input type="email" id="email" class="auth__input"
-                        placeholder="khoint@gmail.com">
+                    <input name="email" type="email" id="email"
+                        class="auth__input"
+                        placeholder="khoint@gmail.com"
+                        value="<?php echo oldData('email',$oldData) ?>">
+
+                    <!-- Error -->
+                    <?php echo formError('email', $errors) ?>
                 </div>
 
                 <!-- Passowrd -->
                 <div class="auth__field">
                     <label for="password">Password *</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password"
-                            class="auth__input"
-                            placeholder="Create a password">
+                        <input name="password" type="password"
+                            id="password" class="auth__input"
+                            placeholder="Create a password"
+                            value="<?php echo oldData('password',$oldData) ?>">
                         <i class="fa-solid fa-eye-slash"></i>
                     </div>
+
+                    <!-- Error -->
+                    <?php echo formError('login', $errors) ?>
                 </div>
 
                 <div class="auth__forget">

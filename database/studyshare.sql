@@ -1,14 +1,17 @@
-CREATE DATABASE IF NOT EXITS studyshare;
+CREATE DATABASE IF NOT EXISTS studyshare;
 use studyshare;
 
 -- 1. Bảng Users(tài khoản)
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    fullname VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255) DEFAULT 'default.png',
     role ENUM('user', 'admin') DEFAULT 'user',
-    status ENUM('active', 'blocked') DEFAULT 'active',
+    status ENUM('pending', 'active', 'blocked') DEFAULT 'pending',
+    active_token VARCHAR(255),
+    last_login DATETIME,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -56,3 +59,12 @@ CREATE TABLE ratings (
     FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 )
+
+-- 6. Bảng token_login
+CREATE TABLE token_login (
+ 	id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

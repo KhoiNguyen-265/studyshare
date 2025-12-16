@@ -77,7 +77,7 @@ function filterData($method = '') {
 
                 $out[$key] = $tmp;
             } else {
-                $out[$key] = is_string($v) ? trim(filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS)) : $v;
+                $out[$key] = is_string($value) ? trim(filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS)) : $value;
             }
         }
 
@@ -101,4 +101,42 @@ function filterData($method = '') {
     }
 
     return $result;
+}
+
+// Validate email
+function validateEmail($email) {
+    $email = trim($email);
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+// Validate int
+function validateInt($number) {
+    return filter_var($number, FILTER_VALIDATE_INT) !== false;
+}
+
+// Validate phone 
+function validatePhone($phone) {
+    $phone = preg_replace('/\s+/', '', $phone);
+    return preg_match('/^(0|\+84)[0-9]{9}$/', $phone);
+}
+
+// Display error 
+function formError($fieldName, $errors) {
+    return !empty($errors[$fieldName]) ? '<div class="error">' . reset($errors[$fieldName]) . '</div>' : false;
+}
+
+// Display old value 
+function oldData($fieldName, $oldData) {
+    return !empty($oldData[$fieldName]) ? $oldData[$fieldName] : null;
+}
+
+// Redirect: chuyển hướng
+function redirect($path, $pathFull = false) {
+    if ($pathFull) {
+        header("Location: $path");
+        exit();
+    } 
+    $url = _HOST_URL . $path;
+    header("Location: $url");
+    exit();
 }

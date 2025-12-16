@@ -11,7 +11,7 @@ body {
 .auth-deco {
     max-width: 1600px;
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     right: 0;
     left: 0;
     bottom: 0;
@@ -23,7 +23,6 @@ body {
 
 .auth-form {
     position: relative;
-    z-index: 999;
     padding: 40px 80px;
     max-width: 556px;
     width: 100%;
@@ -115,25 +114,6 @@ body {
     cursor: pointer;
 }
 
-.auth__required {
-    display: flex;
-    gap: 5px;
-    align-items: baseline;
-}
-
-.auth__required a {
-    color: #6f49fd;
-}
-
-.auth__required a:hover {
-    text-decoration: underline;
-}
-
-.auth__required .auth__desc {
-    text-align: left;
-    line-height: 1.4;
-}
-
 .auth__btn {
     display: flex;
     align-items: center;
@@ -169,9 +149,83 @@ body {
 }
 
 .auth__forget a {
-    color: #6f49fd;
+    color: var(--color-primary);
 }
 
 .auth__forget a:hover {
     text-decoration: underline;
+}
+
+/* Error */
+.error {
+    color: var(--color-error);
+}
+
+/* Modal */
+.togbox__content {
+    overflow-y: inherit;
+}
+
+.modal-heading {
+    color: var(--color-text-primary);
+    margin-top: 10px;
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+.modal-desc {
+    margin-top: 20px;
+    color: var(--color-text-secondary);
+}
+
+.modal-btn {
+    padding: clamp(0.5rem, 1.2vw, 1.4rem) clamp(2rem, 2.6vw, 3rem);
+    min-width: 120px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: clamp(1rem, 1.2vw, 1.6rem);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modal-btn:hover {
+    opacity: 0.9;
+}
+
+.modal-btn--success {
+    background: var(--color-success);
+    color: #fff;
+}
+
+.modal-btn--error {
+    background-color: var(--color-error);
+}
+
+/* Active */
+.active__container {
+    height: 100%;
+}
+
+.active-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 20px; */
+}
+
+.active__heading {
+    margin-top: 20px;
+}
+
+.active__desc {
+    line-height: 1.4;
+}
+
+.active-deco {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
 }

@@ -40,13 +40,13 @@ function insert($table, $data) {
 
     $key = array_keys($data);
     $column = implode(',', $key);
-    $place = ':' . implode(':,', $key);
+    $place = ':' . implode(',:', $key);
 
     $sql = "INSERT INTO $table ($column) VALUES($place)";
 
     $stm = $conn -> prepare($sql);
 
-    $stm -> execute($data);
+    return $stm -> execute($data);
 }
 
 // Update dữ liệu
@@ -66,7 +66,7 @@ function update($table, $data, $condition = "") {
     }
 
     $stm = $conn -> prepare($sql);
-    $stm -> execute($data);
+    return $stm -> execute($data);
 }
 
 // Delete dữ liệu
@@ -80,7 +80,7 @@ function delete($table, $condition = "") {
     }
 
     $stm = $conn -> prepare($sql);
-    $stm -> execute();
+    return $stm -> execute();
 }
 
 // Lấy ID vừa insert

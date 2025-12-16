@@ -4,7 +4,7 @@
     ob_start();
 
     require_once("./config/config.php");
-    require_once("./config/db.php");
+    require_once("./config/db.php"); // connect database
     require_once("./includes/database.php");
     require_once("./includes/session.php");
 

@@ -3,7 +3,6 @@ const passwordWrappers = document.querySelectorAll(".password-wrapper");
 passwordWrappers.forEach((wrapper) => {
     const input = wrapper.querySelector("input");
     const icon = wrapper.querySelector("i");
-    console.log(input);
 
     if (input && icon) {
         icon.onclick = () => {
