@@ -40,22 +40,29 @@ if(isPost()) {
             } else {
                 // Mật khẩu đúng
                 if (password_verify($password, $user['password'])) {
-                    // tạo token -> insert vào table token_login
-                    $token = bin2hex(random_bytes(32));
-                    $dataInsert = [
-                        'token' => $token,
-                        'user_id' => $user['id']
-                    ];
-                    $insertStatus = insert('token_login', $dataInsert);
-                    if(!$insertStatus) {
-                        $errors['login']['system'] = "Login is failed";
-                    }
+                    // Tài khoản login 1 nơi 
+                    $userId = $user['id'];
+                    $checkAlready = getRows("SELECT * FROM token_login WHERE user_id = '$userId'");
+                    if($checkAlready > 1) {
+                        $errors['login']['multiple'] = "Your account is currently active on another device. Please try again later.";
+                    } else {
+                        // tạo token -> insert vào table token_login
+                        $token = bin2hex(random_bytes(32));
+                        $dataInsert = [
+                            'token' => $token,
+                            'user_id' => $user['id']
+                        ];
+                        $insertStatus = insert('token_login', $dataInsert);
+                        if(!$insertStatus) {
+                            $errors['login']['system'] = "Login is failed";
+                        }
 
-                    // Gán token lên session 
-                    setSessionFLash('token_login', $token);
+                        // Gán token lên session 
+                        setSessionFLash('token_login', $token);
 
-                    // Điều hướng trang 
-                    redirect("?page=home");
+                        // Điều hướng trang 
+                        redirect("?page=home");
+                        }
                 }
                 else {
                     // Sai mật khẩu
