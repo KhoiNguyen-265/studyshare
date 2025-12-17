@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 8px;
 }
 
 .sidebar__link {
@@ -32,6 +32,11 @@
 }
 
 .sidebar__link:hover {
+    background: #e3f2fd;
+    color: var(--color-primary);
+}
+
+.sidebar__link--active {
     background: #e3f2fd;
     color: var(--color-primary);
 }

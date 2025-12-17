@@ -6,5 +6,5 @@ if(!defined("_NTK")) {
 ?>
 
 <div>
-    <h1>Home page</h1>
+    <h1>Documents page</h1>
 </div>

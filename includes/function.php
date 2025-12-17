@@ -155,3 +155,13 @@ function isLogin() {
     }
     return $checkLogin;
 }
+
+// Check active 
+function isActive($page ) {
+    global $currentPage;
+
+    if ($page === $currentPage) {
+        return 'sidebar__link--active';
+    }
+    return "";
+}

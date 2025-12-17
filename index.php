@@ -28,12 +28,22 @@
 
     $path = 'pages/' . $page . '/' . $action . '.php';
 
-    if(!empty($path)) {
-        if(file_exists($path)) {
-            require_once $path;
-        } else {
-            require_once "./pages/error/404.php";
-        }
-    } else {
+    if(empty($path)) {
         require_once "./pages/error/500.php";
+        exit();
+    } else if(!file_exists($path)) {
+        require_once "./pages/error/404.php";
+        exit();
+    }
+
+    $publicPages = ['landing', 'auth', 'error'];
+
+    if(in_array($page, $publicPages)) {
+        require_once $path;
+    } else {
+        if(!isLogin()) {
+            redirect('?page=landing');
+        }
+
+        require_once "./layouts/user.php";
     }

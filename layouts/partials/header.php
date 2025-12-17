@@ -4,10 +4,9 @@ if(!defined("_NTK")) {
 }
 
 if (!isLogin()) {
-    redirect("?page=auth&action=login");
+    redirect("?page=landing");
 }
 
-include "./includes/head.php";
 ?>
 
 <header class="header">

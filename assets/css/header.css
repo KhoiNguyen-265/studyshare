@@ -45,6 +45,10 @@
     border-color: transparent;
 }
 
+.search__icon i {
+    color: var(--color-text-secondary);
+}
+
 .avatar-wrapper {
     width: 40px;
     height: 40px;
