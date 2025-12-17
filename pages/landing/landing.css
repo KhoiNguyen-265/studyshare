@@ -1,4 +1,8 @@
 /* common */
+body {
+    background: #fff;
+}
+
 .section-heading {
     font-size: 3.8rem;
     line-height: 1.26;

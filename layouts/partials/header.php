@@ -13,7 +13,7 @@ include "./includes/head.php";
 <header class="header">
     <div class="header__inner">
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="#" class="logo header__logo">
             <img src="<?php echo _HOST_URL_ASSETS ?>/icons/logo.svg"
                 alt="Study Share" />
             <span>StudyShare</span>

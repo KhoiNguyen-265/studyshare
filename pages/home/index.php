@@ -20,11 +20,23 @@ if(!defined("_NTK")) {
     <!-- Header CSS  -->
     <link rel="stylesheet"
         href="<?php echo _HOST_URL_ASSETS ?>/css/header.css">
+
+    <!-- Sidebar CSS -->
+    <link rel="stylesheet"
+        href="<?php echo _HOST_URL_ASSETS ?>/css/sidebar.css">
 </head>
 
 <body style="height: 10000px;">
-
+    <!-- Header -->
     <?php include "./layouts/partials/header.php"; ?>
+
+    <!-- Main -->
+    <main>
+        <!-- Sidebar -->
+        <?php include "./layouts/partials/sidebar.php" ?>
+
+
+    </main>
 </body>
 
 </html>

@@ -2,16 +2,18 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    background-color: rgba(245, 245, 245, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Hỗ trợ Safari */
+    background: var(--color-surface);
 }
 
 .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 50px;
+    padding: 12px 24px;
+}
+
+.header__logo {
+    width: 200px;
 }
 
 .header__right {
