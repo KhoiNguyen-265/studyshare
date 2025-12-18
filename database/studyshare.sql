@@ -38,6 +38,16 @@ CREATE TABLE documents (
     FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
 );
 
+-- 7. Bảng log document - view 
+CREATE TABLE document_views (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    doc_id INT NOT NULL,
+    viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE
+);
+
 -- 4. Bảng comments (bình luận)
 CREATE TABLE comments (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -68,3 +78,4 @@ CREATE TABLE token_login (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+

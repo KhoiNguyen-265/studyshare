@@ -57,8 +57,12 @@ if(isPost()) {
                             $errors['login']['system'] = "Login is failed";
                         }
 
-                        // Gán token lên session 
+                        // Gán token và dữ liệu người dùng lên session 
                         setSession('token_login', $token);
+                        setSession('user_id', $user['id']);
+                        setSession('fullname', $user['fullname']);
+                        setSession('role', $user['role']);
+                        
 
                         // Điều hướng trang 
                         redirect("?page=home");

@@ -26,4 +26,4 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <link rel="stylesheet"
-    href="<?php echo _HOST_URL; ?>assets/css/index.css" />
+    href="<?php echo _HOST_URL; ?>assets/css/index.css?v=<?php echo rand(); ?>" />
