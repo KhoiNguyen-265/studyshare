@@ -14,6 +14,7 @@
     flex-direction: column;
     gap: 20px;
     margin-top: 8px;
+    height: 100%;
 }
 
 .sidebar__link {
@@ -39,4 +40,24 @@
 .sidebar__link--active {
     background: #e3f2fd;
     color: var(--color-primary);
+}
+
+.sidebar__footer {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.sidebar__footer::before {
+    content: "";
+    height: 1px;
+    width: 200px;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background: var(--color-border);
+}
+
+.sidebar__footer i {
+    transform: rotate(180deg);
 }

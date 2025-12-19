@@ -46,7 +46,7 @@ if(!defined("_NTK")) {
         <?php include "./layouts/partials/sidebar.php" ?>
 
         <!-- Content -->
-        <div class="main-content" style="padding-bottom: 80px;">
+        <div class="main-content" style="padding-bottom: 40px;">
             <?php 
                 if(file_exists($path)) {
                     require_once $path;

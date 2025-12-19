@@ -39,7 +39,7 @@ $totalDownloads = getOne("SELECT IFNULL(SUM(download_count), 0) AS total
 $latestViewDocs = getAll("SELECT d.id, d.title, dv.viewed_at, d.view_count, d.download_count, u.fullname as author
                           FROM document_views dv 
                           JOIN documents d ON dv.doc_id = d.id 
-                          JOIN users u ON dv.user_id = u.id
+                          JOIN users u ON d.user_id = u.id
                           WHERE dv.user_id = $userId 
                           ORDER BY dv.viewed_at DESC LIMIT 6");
 
@@ -71,7 +71,7 @@ $latestUploadDocs = getAll("SELECT id, title, view_count, download_count, create
     </div>
     <!-- Call to action -->
     <div class="hero__cta">
-        <a href="?page=home&action=upload" class="btn btn--primary">
+        <a href="?page=upload" class="btn btn--primary">
             <i class="fa-solid fa-cloud-arrow-up"></i>
             Upload Document
         </a>
@@ -140,7 +140,7 @@ $latestUploadDocs = getAll("SELECT id, title, view_count, download_count, create
             yet.</p>
         <?php else: ?>
         <div class="document__list">
-            <?php foreach($latestViewDocs as $doc): ?>
+            <?php foreach($latestUploadDocs as $doc): ?>
             <?php include "./layouts/partials/documentCard.php"; ?>
             <?php endforeach; ?>
         </div>

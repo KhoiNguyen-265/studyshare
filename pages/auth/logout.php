@@ -9,6 +9,9 @@ if(isLogin()) {
 
     if($removeToken) {
         removeSession('token_login');
+        removeSession('user_id');
+        removeSession('fullname');
+        removeSession('role');
         redirect("?page=auth&action=login");
     }
 }

@@ -145,6 +145,8 @@ a {
 }
 
 .document-item {
+    display: flex;
+    flex-direction: column;
     border-radius: 12px;
     background: #fff;
     transition: 0.3s;
@@ -170,6 +172,10 @@ a {
 }
 
 .document-item__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     padding: 20px;
 }
 
@@ -183,6 +189,10 @@ a {
 
 .document-item__title:hover {
     color: var(--color-primary);
+}
+
+.document-item__desc {
+    margin-top: auto;
 }
 
 .document-item__row {
