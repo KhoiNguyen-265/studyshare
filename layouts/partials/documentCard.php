@@ -1,4 +1,8 @@
 <?php
+if(!defined("_NTK")) {
+    die("Truy cập không hợp lệ");
+}
+
 if(isset($doc)):
 ?>
 <div class="document-item">
@@ -6,7 +10,8 @@ if(isset($doc)):
         <i class="fa-regular fa-file-lines"></i>
     </div>
     <div class="document-item__content">
-        <a href="#!" class="document-item__title line-clamp-2">
+        <a href="?page=documents&action=detail&id=<?php echo $doc['id']; ?>"
+            class="document-item__title line-clamp-2">
             <?php echo $doc['title']; ?>
         </a>
         <div class="document-item__desc">

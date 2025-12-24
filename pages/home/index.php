@@ -36,7 +36,7 @@ $totalDownloads = getOne("SELECT IFNULL(SUM(download_count), 0) AS total
                         )['total'];
 
 // Lấy ra 6 tài liệu đã xem gần đây của user
-$latestViewDocs = getAll("SELECT d.id, d.title, dv.viewed_at, d.view_count, d.download_count, u.fullname as author
+$latestViewDocs = getAll("SELECT d.id, d.title, dv.viewed_at, d.view_count, d.download_count, d.created_at, u.fullname as author
                           FROM document_views dv 
                           JOIN documents d ON dv.doc_id = d.id 
                           JOIN users u ON d.user_id = u.id

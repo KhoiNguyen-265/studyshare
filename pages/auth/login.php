@@ -63,7 +63,6 @@ if(isPost()) {
                         setSession('fullname', $user['fullname']);
                         setSession('role', $user['role']);
                         
-
                         // Điều hướng trang 
                         redirect("?page=home");
                         }

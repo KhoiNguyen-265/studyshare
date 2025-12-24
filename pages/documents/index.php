@@ -3,16 +3,12 @@ if(!defined("_NTK")) {
     die("Truy cập không hợp lệ");
 }
 
-// echo "<pre>";
-// print_r($listSubjects);
-// echo "</pre>";
-
 $filter = filterData();
 $searchKeyword = $filter['q'] ?? '';
 $subjectId = $filter['subject_id'] ?? '';
 
 // Phân trang 
-$limit = 1;
+$limit = 2;
 $currentPage = (isset($_GET['page_number']) && is_numeric($_GET['page_number'])) ? (int)$_GET['page_number'] : 1;
 
 if ($currentPage < 1) {
@@ -89,7 +85,6 @@ $listSubjects = getAll("SELECT * FROM subjects ORDER BY name ASC");
     </div>
 
     <!-- Pagination -->
-    <?php if($totalPages > 1): ?>
     <div class="pagination">
         <ul class="pagination__list">
             <!-- Previous -->
@@ -106,10 +101,10 @@ $listSubjects = getAll("SELECT * FROM subjects ORDER BY name ASC");
                 $activePage = isset($_GET['page_number']) && is_numeric($_GET['page_number']) ? (int)$_GET['page_number'] : 1;
                 
                 // Trang đầu
-                if($currentPage > $range + 2) {
+                if($currentPage > $range + 1) {
                     echo '<a href="?' . http_build_query(array_merge($_GET, ['page_number' => 1])) . '" class="pagination__item' .  '">1</a>';
 
-                    if($currentPage > $range + 3) {
+                    if($currentPage > $range + 2) {
                         echo '<span class="dots">...</span>';
                     }
                 }
@@ -122,8 +117,8 @@ $listSubjects = getAll("SELECT * FROM subjects ORDER BY name ASC");
                 }
 
                 // Trang cuối 
-                if($currentPage < $totalPages - $range - 1) {
-                    if($currentPage > $totalPages - $range - 2) {
+                if($currentPage < $totalPages - $range ) {
+                    if($currentPage < $totalPages - $range - 1) {
                         echo '<span class="dots">...</span>';
                     }
                     echo '<a href="?' . http_build_query(array_merge($_GET, ['page_number' => $totalPages])) . '" class="pagination__item">' . $totalPages . '</a>';
@@ -137,5 +132,4 @@ $listSubjects = getAll("SELECT * FROM subjects ORDER BY name ASC");
             </a>
         </ul>
     </div>
-    <?php endif; ?>
 </div>
