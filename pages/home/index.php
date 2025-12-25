@@ -35,19 +35,27 @@ $totalDownloads = getOne("SELECT IFNULL(SUM(download_count), 0) AS total
                           WHERE user_id = $userId"
                         )['total'];
 
+// Lấy ra 6 tài liệu nổi bật nhất (view)
+$trendingDocs = getAll("SELECT d.*, u.fullname as author
+                        FROM documents d 
+                        JOIN users u ON d.user_id = u.id
+                        WHERE d.status = 'approved' 
+                        ORDER BY d.view_count DESC LIMIT 8");
+
 // Lấy ra 6 tài liệu đã xem gần đây của user
 $latestViewDocs = getAll("SELECT d.id, d.title, dv.viewed_at, d.view_count, d.download_count, d.created_at, u.fullname as author
                           FROM document_views dv 
                           JOIN documents d ON dv.doc_id = d.id 
                           JOIN users u ON d.user_id = u.id
                           WHERE dv.user_id = $userId 
-                          ORDER BY dv.viewed_at DESC LIMIT 6");
+                          ORDER BY dv.viewed_at DESC LIMIT 8");
 
 // Lấy ra 6 tài liệu upload mới nhất của user 
-$latestUploadDocs = getAll("SELECT id, title, view_count, download_count, created_at, status 
-                            FROM documents 
-                            WHERE user_id = $userId 
-                            ORDER BY created_at DESC LIMIT 6");
+$latestUploadDocs = getAll("SELECT d.id, d.title, d.view_count, d.download_count, d.created_at,  d.status, u.fullname as author
+                            FROM documents d 
+                            JOIN users u ON d.user_id = u.id
+                            WHERE d.user_id = $userId 
+                            ORDER BY d.created_at DESC LIMIT 8");
 // echo "<pre>";
 // print_r($latestViewDocs);
 // echo "</pre>";
@@ -86,7 +94,7 @@ $latestUploadDocs = getAll("SELECT id, title, view_count, download_count, create
 
 <!-- Statistic -->
 <div class="statistic mt-40">
-    <h2 class="statistic__heading heading-2">Statistic</h2>
+    <h2 class="statistic__heading heading-2">My Statistic</h2>
     <div class="statistic__list">
         <div class="statistic__card">
             <i class="fa-solid fa-file-lines"></i>
@@ -111,6 +119,23 @@ $latestUploadDocs = getAll("SELECT id, title, view_count, download_count, create
                 students</p>
             <strong><?= $totalDownloads ?></strong>
         </div>
+    </div>
+</div>
+
+<!-- Trending documents -->
+<div class="recent mt-40">
+    <h3 class="heading-2">Trending documents</h3>
+    <div class="recent__list">
+        <?php if (empty($trendingDocs)): ?>
+        <p class="recent__label">You haven't viewed any documents
+            yet.</p>
+        <?php else: ?>
+        <div class="document__list">
+            <?php foreach($trendingDocs as $doc): ?>
+            <?php include "./layouts/partials/documentCard.php"; ?>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 

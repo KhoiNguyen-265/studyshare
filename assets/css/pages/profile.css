@@ -1,0 +1,229 @@
+.profile__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.profile__body {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.profile-card {
+    background: var(--color-surface);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    min-width: 350px;
+}
+
+.profile-card__top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.profile__avatar-wrapper {
+    display: flex;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profile__avatar {
+    flex-shrink: 0;
+    width: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.avatar-badge {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--color-surface);
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-surface);
+}
+
+.profile__name {
+    color: var(--color-text-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.profile__email {
+    color: var(--color-text-secondary);
+    font-size: 1.4rem;
+    margin-top: -5px;
+}
+
+.profile__role {
+    font-size: 1.4rem;
+    color: var(--color-text-secondary);
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge--admin {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.badge--user {
+    background: rgba(30, 126, 229, 0.1);
+    color: var(--color-primary);
+}
+
+.badge--status {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--color-success);
+}
+
+.profile-card__bottom {
+    padding: 20px;
+}
+
+.profile__joined {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+}
+
+/* =========== PROFILE RIGHT =========== */
+.profile-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+/* Edit Profile Form */
+.profile-form {
+    padding: 32px;
+}
+
+.profile-form__title {
+    color: var(--color-text-primary);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.profile-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.profile-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-form__label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.avatar-input {
+    display: none;
+}
+
+.profile-form__upload {
+    padding: 10px 20px;
+    background: var(--color-bg);
+    border: 2px dashed var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.profile-form__upload:hover {
+    background: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+.profile-form__hint {
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.profile-form__input {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    transition: 0.3s;
+    background: var(--color-surface);
+    outline: none;
+}
+
+.profile-form__input:focus {
+    border-color: var(--color-primary-light);
+}
+
+.profile-form__input.error:focus,
+.profile-form__input.error {
+    border-color: var(--color-error);
+}
+
+.profile-form__input:disabled {
+    background: var(--color-bg);
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Change Password Form */
+.profile-form__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-form__input-wrapper input {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}

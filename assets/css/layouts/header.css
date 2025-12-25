@@ -50,10 +50,14 @@
 }
 
 .avatar-wrapper {
+    display: flex;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+}
+.avatar-wrapper img {
+    flex-shrink: 0;
 }
 
 .bell-wrapper {

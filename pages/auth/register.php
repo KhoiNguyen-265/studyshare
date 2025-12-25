@@ -44,7 +44,7 @@ if (isPost()) {
         $errors['password']['length'] = "Password must be at least 8 characters.";
     }   
 
-    // Validate password 
+    // Validate confirm password 
     if (empty($result['confirm'])) {
         $errors['confirm']['required'] = "Please confirm your password.";
     } elseif ($result['confirm'] !== $result['password']) {

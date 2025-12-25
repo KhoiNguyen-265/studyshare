@@ -29,7 +29,7 @@ if(isPost()) {
         $email = $result['email'];
         $password = $result['password'];
 
-        $user = getOne("SELECT id, fullname, email, password, status, role FROM users WHERE email = '$email' ");
+        $user = getOne("SELECT id, fullname, email, password, status, avatar, role FROM users WHERE email = '$email' ");
         
         if (!empty($user)) {
             // Check status 
@@ -61,6 +61,7 @@ if(isPost()) {
                         setSession('token_login', $token);
                         setSession('user_id', $user['id']);
                         setSession('fullname', $user['fullname']);
+                        setSession('avatar', $user['avatar']);
                         setSession('role', $user['role']);
                         
                         // Điều hướng trang 

@@ -25,12 +25,6 @@ $document = getOne("SELECT d.*, u.fullname as author, s.name as subject_name
                     JOIN subjects s ON d.subject_id = s.id
                     WHERE d.id = $docId AND d.status = 'approved'");
 
-// echo "<pre>";
-// print_r(getSession());
-// echo "</pre>";
-// echo "<pre>";
-// print_r($document);
-// echo "</pre>";
 if (empty($document)) {
     redirect("?page=documents");
 }

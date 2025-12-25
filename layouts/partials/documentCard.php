@@ -3,6 +3,10 @@ if(!defined("_NTK")) {
     die("Truy cập không hợp lệ");
 }
 
+if (!isLogin()) {
+    redirect("?page=landing");
+}
+
 if(isset($doc)):
 ?>
 <div class="document-item">

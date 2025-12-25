@@ -208,3 +208,6 @@ a {
     justify-content: stretch;
     gap: 20px;
 }
+.error {
+    color: var(--color-error);
+}

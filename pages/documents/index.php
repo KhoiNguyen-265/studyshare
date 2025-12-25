@@ -3,6 +3,10 @@ if(!defined("_NTK")) {
     die("Truy cập không hợp lệ");
 }
 
+if (!isLogin()) {
+    redirect("?page=landing");
+}
+
 $filter = filterData();
 $searchKeyword = $filter['q'] ?? '';
 $subjectId = $filter['subject_id'] ?? '';

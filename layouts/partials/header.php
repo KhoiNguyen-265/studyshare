@@ -43,7 +43,7 @@ if (!isLogin()) {
             </div>
             <!-- Avatar -->
             <div class="avatar-wrapper">
-                <img src="<?php echo _HOST_URL_ASSETS ?>/images/avatar/default.jpg"
+                <img src="<?php echo _HOST_URL ?>uploads/avatars/<?php echo getSession('avatar') ?>"
                     alt="avatar" class="avatar">
             </div>
         </div>
