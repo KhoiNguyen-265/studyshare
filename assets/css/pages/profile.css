@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .profile__body {
@@ -11,6 +12,14 @@
     gap: 30px;
 }
 
+/* =========== PROFILE LEFT =========== */
+.profile-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Profile Card */
 .profile-card {
     background: var(--color-surface);
     border-radius: 16px;
@@ -58,7 +67,9 @@
     color: var(--color-surface);
 }
 
-.profile__name {
+.profile__name,
+.profile-form__title,
+.stats-card__title {
     color: var(--color-text-primary);
     font-size: 1.8rem;
     font-weight: 600;
@@ -112,6 +123,96 @@
     font-size: 1.2rem;
 }
 
+/* Statistic */
+.stats-card {
+    padding: 32px;
+}
+
+.stats-card__title {
+    text-align: center;
+}
+
+.stats-card__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.stats-card__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.stats-card__item:hover {
+    background: #f0f0f0;
+    transform: translateY(-6px);
+}
+
+.stats-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+}
+
+.stats-card__icon i {
+    font-size: 2rem;
+}
+
+.stats-card__icon--primary {
+    background: rgba(30, 136, 229, 0.1);
+}
+
+.stats-card__icon--primary i {
+    color: var(--color-primary);
+}
+
+.stats-card__icon--success {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.stats-card__icon--success i {
+    color: var(--color-success);
+}
+
+.stats-card__icon--warning {
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.stats-card__icon--warning i {
+    color: var(--color-accent);
+}
+
+.stats-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.stats-card__label {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.stats-card__value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
 /* =========== PROFILE RIGHT =========== */
 .profile-right {
     flex: 1;
@@ -125,9 +226,6 @@
 }
 
 .profile-form__title {
-    color: var(--color-text-primary);
-    font-size: 1.8rem;
-    font-weight: bold;
     text-align: center;
 }
 

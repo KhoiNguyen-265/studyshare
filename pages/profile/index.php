@@ -16,6 +16,17 @@ $avatarURL = _HOST_URL . "uploads/avatars/" . $user['avatar'];
 
 $errors = [];
 $success = '';
+$fail = '';
+
+// Thống kê cá nhân
+// Tổng số tài liệu đã upload
+$totalDocs = getOne("SELECT COUNT(*) as total FROM documents WHERE user_id = $userId ")['total'];
+
+// Tổng số lượt xem 
+$totalViews = getOne("SELECT IFNULL(SUM(view_count), 0) as total FROM documents WHERE user_id = $userId")['total'];
+
+// Tổng lượt tải
+$totalDowns = getOne("SELECT IFNULL(SUM(download_count), 0) as total FROM documents WHERE user_id = $userId")['total'];
 
 // Handle Edit profile 
 if(isPost() && isset($_POST['update_profile'])) {
@@ -95,6 +106,8 @@ if(isPost() && isset($_POST['update_profile'])) {
         } else {
             $errors['general'][] = 'Failed to update profile';
         }
+    } else {
+        $fail = "Profile update failed!";
     }
 }
 
@@ -127,7 +140,7 @@ if(isPost() && isset($_POST['update_password'])) {
         $errors['new_password']['like'] = 'Passwords do not match. Please try again';
     }
 
-    if(!empty($errors)) {
+    if(empty($errors)) {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
         $updateStatus = update('users', ['password' => $hashedPassword], "id = $userId");
@@ -136,7 +149,10 @@ if(isPost() && isset($_POST['update_password'])) {
             $success = 'Password changed successfully!';
         } else {
             $errors['general'][] = 'Failed to change password';
+            $fail = 'Password update failed!';
         }
+    } else {
+        $fail = 'Password update failed!';
     }
 }
 
@@ -152,9 +168,14 @@ if(isPost() && isset($_POST['update_password'])) {
 
     <!-- Success Message -->
     <?php if (!empty($success)): ?>
-    <div class="alert alert-success">
+    <div class="alert alert--success">
         <i class="fa-solid fa-circle-check"></i>
         <?php echo $success; ?>
+    </div>
+    <?php elseif(!empty($fail)): ?>
+    <div class="alert alert--error">
+        <i class="fa-solid fa-xmark"></i>
+        <?php echo $fail; ?>
     </div>
     <?php endif; ?>
 
@@ -168,6 +189,7 @@ if(isPost() && isset($_POST['update_password'])) {
                 <div class="profile-card__top">
                     <div class="profile__avatar-wrapper">
                         <img class="profile__avatar"
+                            id="avatarPreview"
                             src="<?php echo $avatarURL ?>"
                             alt="<?php echo $user['fullname'] ?>">
                         <div class="avatar-badge">
@@ -195,6 +217,75 @@ if(isPost() && isset($_POST['update_password'])) {
                         Joined
                         <?php echo date("M Y", strtotime($user['created_at'])) ?>
                     </p>
+                </div>
+            </div>
+
+            <!-- Statistic Card -->
+            <div class="profile-card">
+                <div class="stats-card">
+                    <h3 class="stats-card__title">
+                        My Statistics
+                    </h3>
+                    <ul class="stats-card__list">
+                        <!-- Stats-card Item 1 -->
+                        <li>
+                            <div class="stats-card__item">
+                                <!-- Icon -->
+                                <div
+                                    class="stats-card__icon stats-card__icon--primary">
+                                    <i
+                                        class="fa-solid fa-file-lines"></i>
+                                </div>
+                                <div class="stats-card__content">
+                                    <h4 class="stats-card__label">
+                                        Documents
+                                    </h4>
+                                    <p class="stats-card__value">
+                                        <?php echo $totalDocs ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Stats-card Item 2 -->
+                        <li>
+                            <div class="stats-card__item">
+                                <!-- Icon -->
+                                <div
+                                    class="stats-card__icon stats-card__icon--success">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <div class="stats-card__content">
+                                    <h4 class="stats-card__label">
+                                        Total Views
+                                    </h4>
+                                    <p class="stats-card__value">
+                                        <?php echo $totalViews ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Stats-card Item 3 -->
+                        <li>
+                            <div class="stats-card__item">
+                                <!-- Icon -->
+                                <div
+                                    class="stats-card__icon stats-card__icon--warning">
+                                    <i
+                                        class="fa-solid fa-download"></i>
+                                </div>
+                                <div class="stats-card__content">
+                                    <h4 class="stats-card__label">
+                                        Downloads
+                                    </h4>
+                                    <p class="stats-card__value">
+                                        <?php echo $totalDowns ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -285,11 +376,11 @@ if(isPost() && isset($_POST['update_password'])) {
                                     name="current_password"
                                     id="current_password"
                                     class="profile-form__input"
-                                    placeholder="Enter your current password">
+                                    placeholder="Enter your current password"
+                                    autocomplete="current-password">
                                 <button type="button"
-                                    class="toggle-password">
-                                    <i class=" fa-regular
-                                    fa-eye"></i>
+                                    class="toggle-password"><i
+                                        class="fa-regular fa-eye-slash"></i>
                                 </button>
                             </div>
 
@@ -308,11 +399,11 @@ if(isPost() && isset($_POST['update_password'])) {
                                     name="new_password"
                                     id="new_password"
                                     class="profile-form__input"
-                                    placeholder="Enter your new password">
+                                    placeholder="Enter your new password"
+                                    autocomplete="new-password">
                                 <button type="button"
-                                    class="toggle-password">
-                                    <i class=" fa-regular
-                                    fa-eye"></i>
+                                    class="toggle-password"><i
+                                        class="fa-regular fa-eye-slash"></i>
                                 </button>
                             </div>
 
@@ -332,11 +423,11 @@ if(isPost() && isset($_POST['update_password'])) {
                                     name="confirm_password"
                                     id="confirm_password"
                                     class="profile-form__input"
-                                    placeholder="Confirm your new password">
+                                    placeholder="Confirm your new password"
+                                    autocomplete="new-password">
                                 <button type="button"
-                                    class="toggle-password">
-                                    <i class=" fa-regular
-                                    fa-eye"></i>
+                                    class="toggle-password"><i
+                                        class="fa-regular fa-eye-slash"></i>
                                 </button>
                             </div>
 
@@ -355,5 +446,62 @@ if(isPost() && isset($_POST['update_password'])) {
     </div>
 </div>
 
+<!-- CountUp JS -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.9.0/countUp.umd.min.js">
+</script>
+
+<!-- Main JS -->
 <script src="<?php echo _HOST_URL ?>pages/auth/main.js">
+</script>
+
+<script>
+// Xem trước avatar
+const avatarInput = document.querySelector("#avatarInput");
+const uploadLabel = document.querySelector(".profile-form__upload");
+const avatarPreview = document.querySelector("#avatarPreview");
+
+
+avatarInput.onchange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (file) {
+        uploadLabel.innerHTML = file.name;
+        uploadLabel.style.borderColor = '#4caf50'; // Màu xanh lá
+        uploadLabel.style.color = '#4caf50';
+        uploadLabel.style.background = '#e8f5e9';
+
+        // Preview avatar
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            console.log(e.target);
+            avatarPreview.src = e
+                .target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+// Ẩn alert 
+setTimeout(() => {
+    const alert = document.querySelector(".alert");
+    if (alert) {
+        alert.style.opacity = 0;
+        setTimeout(() => {
+            alert.remove();
+        }, 300)
+    }
+}, 3000)
+
+// Count statistic
+const counts = document.querySelectorAll(".stats-card__value");
+counts.forEach(count => {
+    const finalValue = +(count.innerText) || 0;
+    const up = new countUp.CountUp(count, finalValue);
+    if (!up.error) {
+        up.start();
+    } else {
+        console.error(up.error);
+    }
+})
 </script>

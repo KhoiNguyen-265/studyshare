@@ -62,6 +62,38 @@ a {
     margin: 0 auto;
 }
 
+/* Alert */
+.alert {
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    animation: slideDown 0.8s ease;
+    transition: opacity 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-40px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.alert--success {
+    color: var(--color-success);
+    background: rgba(76, 175, 80, 0.15);
+}
+
+.alert--error {
+    color: var(--color-error);
+    background: rgba(244, 67, 54, 0.15);
+}
+
 /* Logo */
 .logo {
     display: flex;
