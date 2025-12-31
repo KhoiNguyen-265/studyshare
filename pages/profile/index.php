@@ -375,7 +375,7 @@ if(isPost() && isset($_POST['update_password'])) {
                                 <input type="password"
                                     name="current_password"
                                     id="current_password"
-                                    class="profile-form__input"
+                                    class="profile-form__input <?php echo $errors ? "error" : "" ?>"
                                     placeholder="Enter your current password"
                                     autocomplete="current-password">
                                 <button type="button"
@@ -398,7 +398,7 @@ if(isPost() && isset($_POST['update_password'])) {
                                 <input type="password"
                                     name="new_password"
                                     id="new_password"
-                                    class="profile-form__input"
+                                    class="profile-form__input <?php echo $errors ? "error" : "" ?>"
                                     placeholder="Enter your new password"
                                     autocomplete="new-password">
                                 <button type="button"
@@ -422,7 +422,7 @@ if(isPost() && isset($_POST['update_password'])) {
                                 <input type="password"
                                     name="confirm_password"
                                     id="confirm_password"
-                                    class="profile-form__input"
+                                    class="profile-form__input <?php echo $errors ? "error" : "" ?>"
                                     placeholder="Confirm your new password"
                                     autocomplete="new-password">
                                 <button type="button"
@@ -497,7 +497,9 @@ setTimeout(() => {
 const counts = document.querySelectorAll(".stats-card__value");
 counts.forEach(count => {
     const finalValue = +(count.innerText) || 0;
-    const up = new countUp.CountUp(count, finalValue);
+    const up = new countUp.CountUp(count, finalValue, {
+        duration: 4,
+    });
     if (!up.error) {
         up.start();
     } else {

@@ -281,7 +281,7 @@ pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
 }).catch(error => {
     console.error('Error loading PDF:', error);
     document.getElementById('pdfLoading').innerHTML =
-        '<p>Error loading PDF. Please download to view.</p>';
+        '<p>Error loading PDF. Please try again!</p>';
 });
 
 // Render Page Function
