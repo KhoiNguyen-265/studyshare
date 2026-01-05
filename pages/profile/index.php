@@ -455,6 +455,8 @@ if(isPost() && isset($_POST['update_password'])) {
 <script src="<?php echo _HOST_URL ?>pages/auth/main.js">
 </script>
 
+<script src="<?php echo _HOST_URL_ASSETS ?>/js/main.js"></script>
+
 <script>
 // Xem trước avatar
 const avatarInput = document.querySelector("#avatarInput");
@@ -481,17 +483,6 @@ avatarInput.onchange = (e) => {
         reader.readAsDataURL(file);
     }
 }
-
-// Ẩn alert 
-setTimeout(() => {
-    const alert = document.querySelector(".alert");
-    if (alert) {
-        alert.style.opacity = 0;
-        setTimeout(() => {
-            alert.remove();
-        }, 300)
-    }
-}, 3000)
 
 // Count statistic
 const counts = document.querySelectorAll(".stats-card__value");

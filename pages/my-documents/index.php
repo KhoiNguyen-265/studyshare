@@ -27,21 +27,37 @@ $totalDocs = getOne("SELECT COUNT(id) as total FROM documents d WHERE user_id = 
 $totalResult = $totalDocs['total'] ?? 0;
 $totalPages = ceil($totalResult / $limit);
 
-// Lấy tất cả tài liệu của người dùng
-$myDocs = getAll("SELECT d.*, u.fullname as author
+// Lấy tất cả tài liệu của người dùng đã được accept
+$myDocsApproved = getAll("SELECT d.*, u.fullname as author
                   FROM documents d
                   JOIN users u ON d.user_id = u.id 
-                  WHERE d.user_id = $userId 
+                  WHERE d.user_id = $userId AND d.status = 'approved'
                   ORDER BY d.created_at ASC
                   LIMIT $limit OFFSET $offset");
+
+// // Lấy tất cả tài liệu của người dùng đang pending
+// $myDocsPending = getAll("SELECT d.*, u.fullname as author
+//                   FROM documents d
+//                   JOIN users u ON d.user_id = u.id 
+//                   WHERE d.user_id = $userId AND d.status = 'pending'
+//                   ORDER BY d.created_at ASC
+//                   LIMIT $limit OFFSET $offset");
+
+// // Lấy tất cả tài liệu của người dùng đang pending
+// $myDocsRejected = getAll("SELECT d.*, u.fullname as author
+//                   FROM documents d
+//                   JOIN users u ON d.user_id = u.id 
+//                   WHERE d.user_id = $userId AND d.status = 'rejected'
+//                   ORDER BY d.created_at ASC
+//                   LIMIT $limit OFFSET $offset");
 ?>
 
 <div class="my-documents">
-    <h2 class="heading-2">My Documents</h2>
+    <h2 class="heading-2">My Documents (Approved)</h2>
     <div class="my-documents__content mt-40">
         <div class="document__list">
-            <?php if(!empty($myDocs)): ?>
-            <?php foreach($myDocs as $doc) {
+            <?php if(!empty($myDocsApproved)): ?>
+            <?php foreach($myDocsApproved as $doc) {
                 include "./layouts/partials/documentCard.php";
             }
             ?>

@@ -46,7 +46,23 @@ function insert($table, $data) {
 
     $stm = $conn -> prepare($sql);
 
-    return $stm -> execute($data);
+    $result = $stm -> execute($data);
+    // DEBUG: Nếu thất bại thì in lỗi ra ngay
+        if (!$result) {
+            echo "<div style='background: #ffcccc; padding: 20px; border: 1px solid red; color: red;'>";
+            echo "<h3>LỖI SQL!</h3>";
+            echo "<p><strong>Câu lệnh:</strong> $sql</p>";
+            echo "<pre>"; 
+            print_r($data); // Xem dữ liệu truyền vào
+            echo "</pre>";
+            echo "<h4>Chi tiết lỗi từ MySQL:</h4>";
+            echo "<pre>";
+            print_r($stm->errorInfo()); // <--- CHÌA KHÓA Ở ĐÂY
+            echo "</pre>";
+            echo "</div>";
+            die(); // Dừng chương trình để em đọc lỗi
+        }
+    return $result;
 }
 
 // Update dữ liệu

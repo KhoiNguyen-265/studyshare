@@ -1,0 +1,240 @@
+.upload__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload__desc {
+    color: var(--color-text-secondary);
+    font-size: 1.4rem;
+}
+
+.upload__container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 24px;
+    align-items: start;
+}
+
+.upload-form__card,
+.upload__sidebar {
+    background: var(--color-surface);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.upload-form__section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upload-form__title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* File Upload Section */
+.upload-form__content-wrapper {
+    margin-bottom: 20px;
+}
+
+.upload-form__content {
+    position: relative;
+}
+
+.upload-form__area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 48px 24px;
+    border: 2px dashed var(--color-border);
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--color-bg);
+    transition: 0.3s;
+}
+
+.upload-form__area:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-alpha);
+}
+
+.upload-form__area i {
+    font-size: 4.8rem;
+    color: var(--color-primary);
+}
+
+.upload-form__area h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.upload-form__area p {
+    font-size: 1.4rem;
+    color: var(--color-text-secondary);
+}
+
+/* File preview */
+.upload-preview {
+    display: none;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.upload-preview__content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.upload-preview__icon {
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-preview__icon i {
+    font-size: 2.6rem;
+    color: var(--color-primary);
+}
+
+.upload-preview__info {
+    flex: 1;
+}
+
+.upload-preview__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.upload-preview__size {
+    font-size: 1.3rem;
+    color: #666;
+}
+
+.upload-preview__remove {
+    width: 36px;
+    height: 36px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.upload-preview__remove:hover {
+    background: var(--color-error);
+    border-color: var(--color-error);
+    color: #fff;
+}
+
+/* Document Information */
+.upload-form__group {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.upload-form__label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.upload-form__input {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    transition: 0.3s;
+    background: #fff;
+}
+
+.upload-form__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.upload-form__input.error {
+    border-color: #f44336;
+}
+
+select.upload-form__input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+textarea.upload-form__input {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.upload__btn {
+    width: 100%;
+}
+
+.char-counter {
+    font-size: 1.2rem;
+    color: var(--color-error);
+    text-align: right;
+}
+
+/* Guidelines */
+.guideline__title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.guideline__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+.guideline__list i {
+    color: var(--color-success);
+}
+
+.guideline__desc {
+    margin-left: 5px;
+}
