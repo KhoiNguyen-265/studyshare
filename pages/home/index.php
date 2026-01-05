@@ -19,7 +19,7 @@ if(empty($userId)) {
 $totalDocs = getOne("SELECT COUNT(*)
                      AS total 
                      FROM documents 
-                     WHERE user_id = $userId"
+                     WHERE user_id = $userId AND status = 'approved'"
                     )['total'];
 
 // Tổng lượt xem 

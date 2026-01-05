@@ -37,6 +37,7 @@
     }
 
     $publicPages = ['landing', 'auth', 'error'];
+    $adminPages = [];
 
     if(in_array($page, $publicPages)) {
         require_once $path;
@@ -45,5 +46,16 @@
             redirect('?page=landing');
         }
 
-        require_once "./layouts/user.php";
+        $useRole = getSession('role');
+
+        if(in_array($page, $adminPages) && $useRole !== 'admin') {
+            require_once "./pages/error/403.php";
+            exit();
+        } 
+
+        if($useRole === 'admin') {
+            require_once "./layouts/admin.php";
+        } else {
+            require_once "./layouts/user.php";
+        }
     }

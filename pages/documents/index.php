@@ -91,3 +91,20 @@ $listSubjects = getAll("SELECT * FROM subjects ORDER BY name ASC");
     <!-- Pagination -->
     <?php include "./layouts/partials/pagination.php" ?>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterBar = document.querySelector(".filter-bar");
+    const activeItem = document.querySelector(
+        ".filter-item.active");
+
+
+    if (filterBar && activeItem) {
+        const scrollLeft = activeItem.offsetLeft - (filterBar
+            .clientWidth / 2) + (activeItem.clientWidth /
+            2);
+
+        filterBar.scrollLeft = scrollLeft;
+    }
+})
+</script>

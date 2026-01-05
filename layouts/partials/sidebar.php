@@ -16,7 +16,7 @@ $currentPage = $_GET['page'] ?? 'home';
             <a href="?page=home"
                 class="sidebar__link <?php echo isActive('home') ?>">
                 <i class="fa-solid fa-house"></i>
-                <span>Dashboard</span>
+                <span>Home</span>
             </a>
         </li>
         <li class="sidebar__item">
