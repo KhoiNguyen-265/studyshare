@@ -149,8 +149,23 @@ if(isPost()) {
         </p>
     </div>
 
+    <!-- Success Message -->
+    <div style="margin-bottom: 10px">
+        <?php if (!empty($success)): ?>
+        <div class="alert alert--success">
+            <i class="fa-solid fa-circle-check"></i>
+            <?php echo $success; ?>
+        </div>
+        <?php elseif(!empty($errors)): ?>
+        <div class="alert alert--error">
+            <i class="fa-solid fa-xmark"></i>
+            Document upload failed!
+        </div>
+        <?php endif; ?>
+    </div>
+
     <!-- Upload Container -->
-    <div class="upload__container mt-40">
+    <div class="upload__container">
         <!-- Upload form -->
         <div class="upload-form__card">
             <form action="" method="POST"
@@ -166,7 +181,7 @@ if(isPost()) {
                                 class="upload-form__input" hidden>
                             <label for="documentFile"
                                 id="fileUploadArea"
-                                class="upload-form__area">
+                                class="upload-form__area <?php echo !empty($errors['document']) ? "error" : ""; ?>">
                                 <i
                                     class="fa-solid fa-cloud-arrow-up"></i>
                                 <h4>Click to upload or drag and drop
@@ -175,6 +190,11 @@ if(isPost()) {
                                     XLSX
                                     (Max 10MB)</p>
                             </label>
+
+                            <!-- Error -->
+                            <div style="margin-top: 8px;">
+                                <?php echo formError('document', $errors); ?>
+                            </div>
                         </div>
 
                         <!-- Preview -->
@@ -196,9 +216,6 @@ if(isPost()) {
                             </div>
                         </div>
                     </div>
-
-                    <!-- Error -->
-                    <?php echo formError('document', $errors); ?>
                 </div>
 
                 <!-- Document Information -->

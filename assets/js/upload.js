@@ -41,6 +41,28 @@ removeFileBtn.onclick = (e) => {
     filePreview.style.display = "none";
 };
 
+// Drag and Drop
+fileUploadArea.ondragover = function (e) {
+    e.preventDefault();
+    this.classList.add("drag-over");
+};
+
+fileUploadArea.ondragleave = function (e) {
+    e.preventDefault();
+    this.classList.remove("drag-over");
+};
+
+fileUploadArea.ondrop = function (e) {
+    e.preventDefault();
+    this.classList.remove("drag-over");
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        fileInput.files = files;
+        showFilePreview(files[0]);
+    }
+};
+
 // Char Counter
 const descriptionFile = document.querySelector("#description");
 const charCount = document.querySelector("#charCount");
