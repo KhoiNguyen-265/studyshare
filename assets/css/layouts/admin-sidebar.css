@@ -10,7 +10,11 @@
     width: 280px;
     background: #1a1f36;
     height: calc(100vh - var(--top));
-    transition: transform 0.3s ease;
+    transition: 0.3s;
+}
+
+body.sidebar-mini .admin-sidebar {
+    width: 80px;
 }
 
 /* Navigation */
@@ -35,6 +39,16 @@
     font-size: 1.4rem;
     font-weight: 500;
     transition: 0.3s;
+}
+
+body.sidebar-mini .admin-sidebar__link {
+    display: flex;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+body.sidebar-mini .admin-sidebar__link span {
+    display: none;
 }
 
 .admin-sidebar__link i {
@@ -81,6 +95,7 @@
 }
 
 .admin-sidebar__avatar {
+    flex-shrink: 0;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -98,4 +113,14 @@
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
     margin-top: 4px;
+}
+
+body.sidebar-mini .admin-sidebar__info {
+    display: none;
+}
+
+body.sidebar-mini .admin-sidebar__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

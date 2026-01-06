@@ -4,7 +4,7 @@
     z-index: 1000;
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     background: #fff;
     height: 76px;
     border-bottom: 1px solid var(--color-border);
@@ -12,9 +12,22 @@
 
 /* Logo */
 .admin-header__logo {
-    padding: 20px;
+    padding: 40px;
     border-right: 1px solid var(--color-border);
-    width: 260px;
+    width: 280px;
+    transition: 0.3s;
+}
+
+body.sidebar-mini .admin-header__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    padding: 20px 0;
+}
+
+body.sidebar-mini .admin-header__logo span {
+    display: none;
 }
 
 .admin-header__logo span {

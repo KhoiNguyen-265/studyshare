@@ -7,7 +7,7 @@ if(!defined("_NTK")) {
 <header class="admin-header">
     <!-- Logo -->
     <div class="admin-header__logo">
-        <a href="?page=admin&admin_page=dashboard" class="logo">
+        <a href="?page=admin&action=dashboard" class="logo">
             <img src="<?php echo _HOST_URL_ASSETS ?>/icons/logo.svg"
                 alt="StudyShare" />
             <span>Admin Panel</span>
