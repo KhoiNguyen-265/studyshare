@@ -22,6 +22,10 @@
     --color-success: #4caf50;
     --color-error: #f44336;
     --color-border: #e0e0e0;
+
+    /* Admin */
+    --color-admin-primary: #5969ff;
+    --color-admin-secondary: #6c757d;
 }
 
 html {

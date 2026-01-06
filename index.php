@@ -15,47 +15,44 @@
 
     require_once("./includes/function.php");
 
-    $page = _PAGE;
-    $action = _ACTION;
-
-    if(!empty($_GET['page'])) {
-        $page = $_GET['page'];
-    }
-
-    if(!empty($_GET['action'])) {
-        $action = $_GET['action'];
-    }
-
-    $path = 'pages/' . $page . '/' . $action . '.php';
-
-    if(empty($path)) {
-        require_once "./pages/error/500.php";
-        exit();
-    } else if(!file_exists($path)) {
-        require_once "./pages/error/404.php";
-        exit();
-    }
+    $page = $_GET['page'] ?? _PAGE;
+    $action = $_GET['action'] ?? _ACTION;
 
     $publicPages = ['landing', 'auth', 'error'];
-    $adminPages = [];
+    $adminPages = ['admin'];
 
-    if(in_array($page, $publicPages)) {
-        require_once $path;
-    } else {
+    if (!in_array($page, $publicPages)) {
         if(!isLogin()) {
-            redirect('?page=landing');
+            redirect("?page=landing");
         }
+    }
 
+    // Phân quyền 
+    $layoutPath = "./layouts/user.php";
+    $isAdminPage = in_array($page, $adminPages);
+
+    if ($isAdminPage) {
         $useRole = getSession('role');
 
-        if(in_array($page, $adminPages) && $useRole !== 'admin') {
+        if($useRole !== 'admin') {
             require_once "./pages/error/403.php";
             exit();
         } 
 
-        if($useRole === 'admin') {
-            require_once "./layouts/admin.php";
-        } else {
-            require_once "./layouts/user.php";
-        }
+        $layoutPath = "./layouts/admin.php";
+    }
+    
+    // Kiểm tra file tồn tại
+    $path = 'pages/' . $page . '/' . $action . '.php';
+
+    if (!file_exists($path)) {
+        require_once "./pages/error/404.php";
+        exit();
+    }
+
+    // Render
+    if (in_array($page, $publicPages)) {
+        require_once $path;
+    } else {
+        require_once $layoutPath;
     }

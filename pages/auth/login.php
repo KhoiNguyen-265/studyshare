@@ -65,8 +65,12 @@ if(isPost()) {
                         setSession('role', $user['role']);
                         
                         // Điều hướng trang 
-                        redirect("?page=home");
+                        if($user['role'] === 'user') {
+                            redirect("?page=home");
+                        } else {
+                            redirect("?page=admin&action=dashboard");
                         }
+                    }
                 }
                 else {
                     // Sai mật khẩu
