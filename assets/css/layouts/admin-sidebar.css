@@ -1,24 +1,16 @@
 .admin-sidebar {
+    --top: 76px;
+
     position: fixed;
     left: 0;
-    top: 0;
+    top: var(--top);
     display: flex;
     flex-direction: column;
     z-index: 1000;
     width: 280px;
     background: #1a1f36;
-    height: 100vh;
+    height: calc(100vh - var(--top));
     transition: transform 0.3s ease;
-}
-
-/* Logo */
-.admin-sidebar__logo {
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.admin-sidebar__logo span {
-    font-size: 2.2rem;
 }
 
 /* Navigation */
@@ -40,14 +32,14 @@
     gap: 12px;
     padding: 16px 20px 16px 40px;
     color: #8287a0;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 500;
     transition: 0.3s;
 }
 
 .admin-sidebar__link i {
     width: 20px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     flex-shrink: 0;
 }
 
@@ -71,6 +63,11 @@
     background: #5969ff;
 }
 
+.admin-sidebar__link.danger:hover {
+    color: var(--color-error);
+    background: rgba(244, 67, 54, 0.1);
+}
+
 /* Sidebar Footer */
 .admin-sidebar__footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -92,7 +89,7 @@
 }
 
 .admin-sidebar__name {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: white;
 }

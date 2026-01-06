@@ -46,6 +46,9 @@ select,
 button {
     font-size: inherit;
     font-family: inherit;
+    outline: none;
+    border: none;
+    background: transparent;
 }
 
 a {

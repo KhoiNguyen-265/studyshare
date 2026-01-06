@@ -13,15 +13,6 @@ function isAdminActive($page) {
 ?>
 
 <aside class="admin-sidebar" id="adminSidebar">
-    <!-- Logo -->
-    <div class="admin-sidebar__logo">
-        <a href="?page=admin&action=dashboard" class="logo">
-            <img src="<?php echo _HOST_URL_ASSETS ?>/icons/logo.svg"
-                alt="StudyShare">
-            <span>Admin Studyshare</span>
-        </a>
-    </div>
-
     <!-- Navigation -->
     <nav class="admin-sidebar__nav">
         <ul class="admin-sidebar__list">
@@ -61,7 +52,7 @@ function isAdminActive($page) {
             </li>
             <li class="admin-sidebar__item">
                 <a href="?page=auth&action=logout"
-                    class="admin-sidebar__link">
+                    class="admin-sidebar__link danger">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>

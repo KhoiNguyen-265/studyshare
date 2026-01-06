@@ -28,7 +28,8 @@ if(!isLogin() || getSession('role') !== 'admin') {
         href="<?php echo _HOST_URL_ASSETS ?>/css/layouts/admin-header.css">
 </head>
 
-<body>
+<body style="height: 10000px;">
+    <?php include "./layouts/partials/admin-header.php" ?>
     <?php include "./layouts/partials/admin-sidebar.php" ?>
 </body>
 

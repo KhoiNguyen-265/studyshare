@@ -61,6 +61,7 @@ if(isPost()) {
                         setSession('token_login', $token);
                         setSession('user_id', $user['id']);
                         setSession('fullname', $user['fullname']);
+                        setSession('email', $user['email']);
                         setSession('avatar', $user['avatar']);
                         setSession('role', $user['role']);
                         
