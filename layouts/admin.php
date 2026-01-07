@@ -30,10 +30,10 @@ if(!isLogin() || getSession('role') !== 'admin') {
     <!-- Admin Page CSS -->
     <?php 
         $adminPage = $_GET['action'] ?? 'dashboard';
-        $adminCssFile = "css/pages/admin/" . $adminPage . '.css';
+        $adminCssFile = "assets/css/pages/admin/" . $adminPage . '.css';
 
         if(file_exists($adminCssFile)) {
-            echo '<link rel="stylesheet" href="' . _HOST_URL_ASSETS . $adminCssFile . '">';
+            echo '<link rel="stylesheet" href="' . _HOST_URL . $adminCssFile . '">';
         }
     ?>
 
@@ -52,10 +52,10 @@ if(!isLogin() || getSession('role') !== 'admin') {
 
 <body>
     <!-- Admin Header -->
-    <?php include "./layouts/partials/admin-header.php" ?>
+    <?php require_once "./layouts/partials/admin-header.php" ?>
 
     <main>
-        <?php include "./layouts/partials/admin-sidebar.php" ?>
+        <?php require_once "./layouts/partials/admin-sidebar.php" ?>
         <div class="admin-container">
             <?php 
                 $adminPage = $_GET['action'] ?? 'dashboard';
@@ -94,6 +94,7 @@ if(!isLogin() || getSession('role') !== 'admin') {
             iconToggle.classList.add('fa-square-caret-right');
             localStorage.setItem('sidebar-mini', 'false');
         }
+
     }
     </script>
 </body>

@@ -47,6 +47,15 @@ $currentPage = $_GET['page'] ?? 'home';
                 <span>Profile</span>
             </a>
         </li>
+        <?php if(getSession('role') === 'admin'): ?>
+        <li class="sidebar__item">
+            <a href="?page=admin&action=dashboard"
+                class="sidebar__link">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Admin</span>
+            </a>
+        </li>
+        <?php endif ?>
         <li class="sidebar__item sidebar__footer">
             <a href="?page=auth&action=logout" class="sidebar__link">
                 <i class="fa-solid fa-right-from-bracket"></i>
