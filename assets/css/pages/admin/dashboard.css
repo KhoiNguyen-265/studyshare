@@ -87,6 +87,22 @@
     box-shadow: rgba(0, 0, 0, 0.08) 0px 32px 32px;
 }
 
+.stat-card.card--primary::before {
+    background: var(--color-admin-primary);
+}
+
+.stat-card.card--success::before {
+    background: var(--color-success);
+}
+
+.stat-card.card--warning::before {
+    background: var(--color-accent);
+}
+
+.stat-card.card--info::before {
+    background: var(--color-primary);
+}
+
 .stat-card__icon {
     display: flex;
     align-items: center;
@@ -95,42 +111,6 @@
     height: 56px;
     border-radius: 14px;
     font-size: 2.4rem;
-}
-
-.stat-card--primary::before {
-    background: var(--color-admin-primary);
-}
-
-.stat-card--success::before {
-    background: var(--color-success);
-}
-
-.stat-card--warning::before {
-    background: var(--color-accent);
-}
-
-.stat-card--info::before {
-    background: var(--color-primary);
-}
-
-.stat-card--primary .stat-card__icon {
-    color: var(--color-admin-primary);
-    background: rgba(89, 105, 255, 0.1);
-}
-
-.stat-card--success .stat-card__icon {
-    color: var(--color-success);
-    background: rgba(76, 175, 80, 0.1);
-}
-
-.stat-card--warning .stat-card__icon {
-    color: var(--color-accent);
-    background: rgba(255, 193, 7, 0.1);
-}
-
-.stat-card--info .stat-card__icon {
-    color: var(--color-primary);
-    background: rgba(21, 101, 192, 0.1);
 }
 
 .stat-card__content {
@@ -312,20 +292,11 @@
     margin-left: auto;
 }
 
-.empty-state {
-    text-align: center;
-    padding: 48px 24px;
-}
-
-.empty-state p {
-    font-size: 1.4rem;
-    color: #999;
-}
-
 /* Data Table */
 .data-table {
     width: 100%;
     border-collapse: separate;
+    line-height: 1.3;
 }
 
 .data-table thead {
@@ -359,33 +330,6 @@
 
 .table-cell__title i {
     color: var(--color-admin-primary);
-}
-
-.status-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.status-badge--approved,
-.status-badge--activated {
-    color: var(--color-success);
-    background: rgba(76, 175, 80, 0.1);
-}
-
-.status-badge--pending {
-    background: #fff3e0;
-    color: #ff9800;
-}
-
-.status-badge--rejected,
-.status-badge--blocked {
-    color: var(--color-error);
-    background: rgba(244, 67, 54, 0.1);
 }
 
 /* RIGHT COLUMN */

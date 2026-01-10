@@ -80,6 +80,7 @@ a {
     font-weight: 500;
     animation: slideDown 0.8s ease;
     transition: opacity 0.3s;
+    margin-bottom: 20px;
 }
 
 @keyframes slideDown {

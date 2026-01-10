@@ -12,13 +12,23 @@ if(!isset($currentPage) || !isset($totalPages) || $totalPages <= 1) {
     return;
 }
 
+$params = $_GET;
+
+$excludeParams = ['id', 'task']; 
+
+foreach ($excludeParams as $key) {
+    if (isset($params[$key])) {
+        unset($params[$key]);
+    }
+}
+
 $range = 2;
 ?>
 
 <div class="pagination">
     <ul class="pagination__list">
         <!-- Previous -->
-        <a href="?<?php echo http_build_query(array_merge($_GET, ['page_number' => $currentPage - 1])); ?>"
+        <a href="?<?php echo http_build_query(array_merge($params, ['page_number' => $currentPage - 1])); ?>"
             class="pagination__btn <?php echo ($currentPage > 1) ? '' : 'disable' ?>">
             <i class="fa-solid fa-angle-left"></i>
         </a>
@@ -32,7 +42,7 @@ $range = 2;
             
             // Trang đầu
             if($currentPage > $range + 1) {
-                echo '<a href="?' . http_build_query(array_merge($_GET, ['page_number' => 1])) . '" class="pagination__item' .  '">1</a>';
+                echo '<a href="?' . http_build_query(array_merge($params, ['page_number' => 1])) . '" class="pagination__item' .  '">1</a>';
 
                 if($currentPage > $range + 2) {
                     echo '<span class="dots">...</span>';
@@ -43,7 +53,7 @@ $range = 2;
             for($i = max(1, $currentPage - $range); $i <= min($totalPages, $currentPage + $range); $i++) {
                 $isActive = ($i === $activePage) ? 'active' : '';
 
-                echo '<a href="?' . http_build_query(array_merge($_GET, ['page_number' => $i])) . '" class="pagination__item ' . $isActive . '">' . $i . '</a>';
+                echo '<a href="?' . http_build_query(array_merge($params, ['page_number' => $i])) . '" class="pagination__item ' . $isActive . '">' . $i . '</a>';
             }
 
             // Trang cuối 
@@ -51,12 +61,12 @@ $range = 2;
                 if($currentPage < $totalPages - $range - 1) {
                     echo '<span class="dots">...</span>';
                 }
-                echo '<a href="?' . http_build_query(array_merge($_GET, ['page_number' => $totalPages])) . '" class="pagination__item">' . $totalPages . '</a>';
+                echo '<a href="?' . http_build_query(array_merge($params, ['page_number' => $totalPages])) . '" class="pagination__item">' . $totalPages . '</a>';
             }
             ?>
 
         <!-- Next -->
-        <a href="?<?php echo http_build_query(array_merge($_GET, ['page_number' => $currentPage + 1])); ?>"
+        <a href="?<?php echo http_build_query(array_merge($params, ['page_number' => $currentPage + 1])); ?>"
             class="pagination__btn <?php echo ($currentPage < $totalPages) ? '' : 'disable' ?>">
             <i class="fa-solid fa-angle-right"></i>
         </a>

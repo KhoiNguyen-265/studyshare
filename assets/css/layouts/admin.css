@@ -1,0 +1,78 @@
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page__desc {
+    color: var(--color-text-secondary);
+    font-size: 1.4rem;
+    margin-top: 8px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.empty-state h3 {
+    font-size: 2rem;
+    color: var(--color-text-primary);
+}
+
+.empty-state p {
+    font-size: 1.4rem;
+    color: #999;
+}
+
+/* Card */
+.card--primary .card__icon {
+    color: var(--color-admin-primary);
+    background: rgba(89, 105, 255, 0.1);
+}
+
+.card--success .card__icon {
+    color: var(--color-success);
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.card--warning .card__icon {
+    color: var(--color-accent);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.card--error .card__icon {
+    color: var(--color-error);
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.card--info .card__icon {
+    color: var(--color-primary);
+    background: rgba(21, 101, 192, 0.1);
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge--approved,
+.status-badge--activated {
+    color: var(--color-success);
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.status-badge--pending {
+    background: #fff3e0;
+    color: #ff9800;
+}
+
+.status-badge--rejected,
+.status-badge--blocked {
+    color: var(--color-error);
+    background: rgba(244, 67, 54, 0.1);
+}

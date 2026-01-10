@@ -91,9 +91,9 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
     <!-- Stats Cards List -->
     <div class="stats__list">
         <!-- Total Users -->
-        <div class="stat-card stat-card--primary">
+        <div class="stat-card card--primary">
             <!-- Icon -->
-            <div class="stat-card__icon">
+            <div class="stat-card__icon card__icon">
                 <i class="fa-solid fa-users"></i>
             </div>
 
@@ -111,9 +111,9 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
         </div>
 
         <!-- Total Documents -->
-        <div class="stat-card stat-card--success">
+        <div class="stat-card card--success">
             <!-- Icon -->
-            <div class="stat-card__icon">
+            <div class="stat-card__icon card__icon">
                 <i class="fa-solid fa-file-lines"></i>
             </div>
 
@@ -130,9 +130,9 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
         </div>
 
         <!-- Pending Approval -->
-        <div class="stat-card stat-card--warning">
+        <div class="stat-card card--warning">
             <!-- Icon -->
-            <div class="stat-card__icon">
+            <div class="stat-card__icon card__icon">
                 <i class="fa-solid fa-clock"></i>
             </div>
 
@@ -147,9 +147,9 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
         </div>
 
         <!-- Total Views -->
-        <div class="stat-card stat-card--info">
+        <div class="stat-card card--info">
             <!-- Icon -->
-            <div class="stat-card__icon">
+            <div class="stat-card__icon card__icon">
                 <i class="fa-solid fa-eye"></i>
             </div>
 
@@ -302,6 +302,19 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
 
         <!-- RIGHT COLUMN -->
         <div class="dashboard-sidebar">
+            <!-- Document status chart -->
+            <div class="dashboard-card">
+                <div class="card__header">
+                    <h3 class="card__title">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Document Status
+                    </h3>
+                </div>
+                <div class="card__body">
+                    <canvas id="statusChart" height="200"></canvas>
+                </div>
+            </div>
+
             <!-- Quick Actions -->
             <div class="dashboard-card">
                 <div class="card__header">
@@ -396,10 +409,33 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
     </div>
 </div>
 
+<!-- Chart.js -->
 <script
     src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js">
 </script>
+
+<!-- CountUp JS -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.9.0/countUp.umd.min.js">
+</script>
+
 <script>
+// Count Statistics
+const counts = document.querySelectorAll(".stat-card__value");
+console.log(counts)
+counts.forEach(count => {
+    const finalValue = +(count.innerText).replace(/,/g,
+        '') || 0;
+    const up = new countUp.CountUp(count, finalValue, {
+        duration: 3,
+    });
+    if (!up.error) {
+        up.start();
+    } else {
+        console.error(up.error);
+    }
+})
+
 // Documents Chart 
 const docsChartData = <?php echo json_encode($docsPerMonth); ?>;
 const labels = docsChartData.map(item => item.month_label);
@@ -444,6 +480,35 @@ if (ctx) {
                         size: 13
                     }
                 },
+            }
+        }
+    });
+}
+
+const statusChart = document.getElementById('statusChart');
+if (statusChart) {
+    new Chart(statusChart, {
+        type: 'doughnut',
+        data: {
+            labels: ['Approved', 'Pending', 'Rejected'],
+            datasets: [{
+                data: [<?php echo $approvedDocs; ?>,
+                    <?php echo $pendingDocs; ?>,
+                    <?php echo $rejectedDocs; ?>
+                ],
+                backgroundColor: ['#4caf50',
+                    '#ffa000', '#f44336'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'left'
+                }
             }
         }
     });

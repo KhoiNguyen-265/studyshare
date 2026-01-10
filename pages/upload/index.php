@@ -186,8 +186,7 @@ if(isPost()) {
                                     class="fa-solid fa-cloud-arrow-up"></i>
                                 <h4>Click to upload or drag and drop
                                 </h4>
-                                <p>PDF, DOC, DOCX, PPT, PPTX, XLS,
-                                    XLSX
+                                <p>Only PDF
                                     (Max 10MB)</p>
                             </label>
 

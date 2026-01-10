@@ -24,14 +24,6 @@ function showFilePreview(file) {
     filePreview.style.display = "block";
 }
 
-function formatFileSize(bytes) {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const sizes = ["Bytes", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
-}
-
 // Remove File
 removeFileBtn.onclick = (e) => {
     e.preventDefault();
@@ -40,6 +32,15 @@ removeFileBtn.onclick = (e) => {
     fileUploadArea.style.display = "flex";
     filePreview.style.display = "none";
 };
+
+// Format size
+function formatFileSize(bytes) {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
+}
 
 // Drag and Drop
 fileUploadArea.ondragover = function (e) {

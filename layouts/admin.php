@@ -19,6 +19,10 @@ if(!isLogin() || getSession('role') !== 'admin') {
 
     <?php require_once "./includes/head.php" ?>
 
+    <!-- TogBox CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/KhoiNguyen-265/togbox-lib@v1.0.1/togbox.min.css">
+
     <!-- Admin Sidebar CSS -->
     <link rel="stylesheet"
         href="<?php echo _HOST_URL_ASSETS ?>/css/layouts/admin-sidebar.css">
@@ -26,6 +30,10 @@ if(!isLogin() || getSession('role') !== 'admin') {
     <!-- Admin Header CSS -->
     <link rel="stylesheet"
         href="<?php echo _HOST_URL_ASSETS ?>/css/layouts/admin-header.css">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet"
+        href="<?php echo _HOST_URL_ASSETS ?>/css/layouts/admin.css">
 
     <!-- Admin Page CSS -->
     <?php 
@@ -69,7 +77,13 @@ if(!isLogin() || getSession('role') !== 'admin') {
             ?>
         </div>
     </main>
+    <!-- Togbox JS -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/KhoiNguyen-265/togbox-lib@v1.0.1/togbox.min.js">
+    </script>
 
+    <!-- Main JS -->
+    <script src="<?php echo _HOST_URL_ASSETS ?>js/main.js"></script>
     <script>
     const navToggle = document.querySelector("#navToggle");
     const iconToggle = navToggle.querySelector("i");

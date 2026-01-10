@@ -18,7 +18,7 @@
     $page = $_GET['page'] ?? _PAGE;
     $action = $_GET['action'] ?? _ACTION;
 
-    $publicPages = ['landing', 'auth', 'error'];
+    $publicPages = ['landing', 'auth', 'error', 'ajax'];
     $adminPages = ['admin'];
 
     if (!in_array($page, $publicPages)) {
