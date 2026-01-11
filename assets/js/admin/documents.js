@@ -12,6 +12,9 @@ const viewDocument = async (docId) => {
     try {
         // Fetch Data
         const res = await fetch(`?page=ajax&task=get_document&id=${docId}`);
+
+        if (!res.ok) throw new Error(`HTTP code: ${res.status}`);
+
         const { success, document: doc } = await res.json();
 
         if (!success) throw new Error("Unable to load document information");

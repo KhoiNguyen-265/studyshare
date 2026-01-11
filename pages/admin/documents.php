@@ -129,14 +129,14 @@ $stats = [
     <div class="doc-stats">
         <!-- Total Documents Card -->
         <div
-            class="card doc-stats-card card--primary <?php echo empty($statusFilter) ? 'active' : '' ?>">
+            class="card stats-card card--primary <?php echo empty($statusFilter) ? 'active' : '' ?>">
             <a href="?page=admin&action=documents">
-                <div class="doc-stats-card__icon card__icon"><i
+                <div class="stats-card__icon card__icon"><i
                         class="fa-solid fa-file-lines"></i></div>
-                <div class="doc-stats-card__info">
-                    <h3 class="doc-stats-card__title">Total Documents
+                <div class="stats-card__info">
+                    <h3 class="stats-card__title">Total Documents
                     </h3>
-                    <p class="doc-stats-card__value">
+                    <p class="stats-card__value">
                         <strong><?php echo $stats['total'] ?></strong>
                     </p>
                 </div>
@@ -145,15 +145,15 @@ $stats = [
 
         <!-- Pending Documents Card -->
         <div
-            class="card doc-stats-card card--warning <?php echo $statusFilter === 'pending' ? 'active' : '' ?>">
+            class="card stats-card card--warning <?php echo $statusFilter === 'pending' ? 'active' : '' ?>">
             <a href="?page=admin&action=documents&status=pending">
-                <div class="doc-stats-card__icon card__icon"><i
+                <div class="stats-card__icon card__icon"><i
                         class="fa-solid fa-clock"></i></div>
-                <div class="doc-stats-card__info">
-                    <h3 class="doc-stats-card__title">Pending
+                <div class="stats-card__info">
+                    <h3 class="stats-card__title">Pending
                         Documents
                     </h3>
-                    <p class="doc-stats-card__value">
+                    <p class="stats-card__value">
                         <strong><?php echo $stats['pending'] ?></strong>
                     </p>
                 </div>
@@ -162,14 +162,14 @@ $stats = [
 
         <!-- Approved Documents Card -->
         <div
-            class="card doc-stats-card card--success <?php echo $statusFilter === 'approved' ? 'active' : '' ?>">
+            class="card stats-card card--success <?php echo $statusFilter === 'approved' ? 'active' : '' ?>">
             <a href="?page=admin&action=documents&status=approved">
-                <div class="doc-stats-card__icon card__icon">
+                <div class="stats-card__icon card__icon">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
-                <div class="doc-stats-card__info">
-                    <h3 class="doc-stats-card__title">Approved</h3>
-                    <p class="doc-stats-card__value">
+                <div class="stats-card__info">
+                    <h3 class="stats-card__title">Approved</h3>
+                    <p class="stats-card__value">
                         <strong><?php echo $stats['approved'] ?></strong>
                     </p>
                 </div>
@@ -178,14 +178,14 @@ $stats = [
 
         <!-- Rejected Documents Card -->
         <div
-            class="card doc-stats-card card--error <?php echo $statusFilter === 'rejected' ? 'active' : '' ?>">
+            class="card stats-card card--error <?php echo $statusFilter === 'rejected' ? 'active' : '' ?>">
             <a href="?page=admin&action=documents&status=rejected">
-                <div class="doc-stats-card__icon card__icon">
+                <div class="stats-card__icon card__icon">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </div>
-                <div class="doc-stats-card__info">
-                    <h3 class="doc-stats-card__title">Rejected</h3>
-                    <p class="doc-stats-card__value">
+                <div class="stats-card__info">
+                    <h3 class="stats-card__title">Rejected</h3>
+                    <p class="stats-card__value">
                         <strong><?php echo $stats['rejected'] ?></strong>
                     </p>
                 </div>
@@ -194,26 +194,7 @@ $stats = [
     </div>
 
     <!-- FILTER & SEARCH -->
-    <div class="documents-toolbar card">
-        <form action="" method="GET" class="search-form">
-            <input type="text" name="page" value="admin" hidden>
-            <input type="text" name="action" value="documents" hidden>
-            <?php if(!empty($statusFilter)): ?>
-            <input type="text" name="status"
-                value="<?php echo $statusFilter ?>" hidden>
-            <?php endif ?>
-
-            <div class="search-input-wrapper">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" name="q"
-                    placeholder="Search documents by title..."
-                    value="<?php echo htmlspecialchars($searchKeyword) ?>"
-                    class="search-input">
-            </div>
-
-            <button class="btn search-btn">Search</button>
-        </form>
-    </div>
+    <?php include "./layouts/partials/admin/search.php" ?>
 
     <!-- DOCUMENTS TABLE -->
     <div class="documents-card card">
