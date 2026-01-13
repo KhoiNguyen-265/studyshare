@@ -194,7 +194,10 @@ $stats = [
     </div>
 
     <!-- FILTER & SEARCH -->
-    <?php include "./layouts/partials/admin/search.php" ?>
+    <?php 
+        $searchPlaceholder = 'Search documents by title...';
+        include "./layouts/partials/admin/search.php" 
+    ?>
 
     <!-- DOCUMENTS TABLE -->
     <div class="documents-card card">

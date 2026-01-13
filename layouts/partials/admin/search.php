@@ -17,7 +17,7 @@
         <div class="search-input-wrapper">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="q"
-                placeholder="Search documents by title..."
+                placeholder="<?php echo !empty($searchPlaceholder) ? $searchPlaceholder : '' ?>"
                 value="<?php echo htmlspecialchars($searchKeyword) ?>"
                 class="search-input">
         </div>

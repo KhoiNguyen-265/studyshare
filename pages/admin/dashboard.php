@@ -200,7 +200,7 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
                         </span>
                     </div>
                     <div class="card__header-right">
-                        <a href="?page=admin&action=documents"
+                        <a href="?page=admin&action=documents&status=pending"
                             class="card__link">
                             View All
                             <i class="fa-solid fa-arrow-right"></i>
@@ -232,8 +232,9 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
                                 </div>
                             </div>
                             <div class="doc-item__action">
-                                <a href="?page=admin&action=documents"
-                                    class="btn admin__btn">Review</a>
+                                <button href=""
+                                    onclick="viewDocument(<?php echo $doc['id']; ?>)"
+                                    class="btn admin__btn">Review</button>
                             </div>
                         </div>
                         <?php endforeach ?>
@@ -409,6 +410,14 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
     </div>
 </div>
 
+<!-- View Document Modal Template -->
+<template class="modal" id="viewModal">
+    <div class="modal-header">
+        <h3 class="modal__title">Document Review</h3>
+    </div>
+    <div class="modal-body" id="modalBody">
+    </div>
+</template>
 <!-- Chart.js -->
 <script
     src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js">
@@ -417,6 +426,10 @@ $recentUsers = getAll("SELECT * FROM users ORDER BY created_at DESC LIMIT 5");
 <!-- CountUp JS -->
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.9.0/countUp.umd.min.js">
+</script>
+
+<!-- Documents JS -->
+<script src="<?php echo _HOST_URL_ASSETS ?>js/admin/documents.js">
 </script>
 
 <script>

@@ -429,3 +429,8 @@
 .user-item__content {
     flex: 1;
 }
+
+.togbox__container {
+    min-width: 600px;
+    width: 85%;
+}
